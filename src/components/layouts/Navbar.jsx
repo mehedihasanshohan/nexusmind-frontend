@@ -15,16 +15,7 @@ export const Navbar = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex flex-col items-center w-full">
 
-      {/* Top Promo Banner */}
-      <div className="w-full bg-[#6366F1]/10 border-b border-[#6366F1]/20 py-2 flex justify-center items-center">
-        <div className="flex items-center gap-2 bg-[#6366F1]/20 px-3 py-0.5 rounded-full border border-[#6366F1]/30">
-          <div className="w-1.5 h-1.5 bg-[#6366F1] rounded-full animate-pulse" />
-          <span className="text-[#A5B4FC] text-[11px] font-bold tracking-widest uppercase">
-            30% OFF UNTIL {countdown}
-          </span>
-        </div>
-      </div>
-
+    
       {/* Main Nav */}
       <nav className={`w-full transition-all duration-300 ${
         scrolled ? "bg-nav-scrolled py-3 border-b border-theme" : "bg-transparent py-6"
