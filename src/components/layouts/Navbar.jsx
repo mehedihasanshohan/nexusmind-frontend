@@ -19,7 +19,7 @@ export const Navbar = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex flex-col items-center w-full">
+    <section id="overview" className="fixed top-0 left-0 right-0 z-50 flex flex-col items-center w-full">
       <nav
         className={`w-full transition-all duration-500 ${
           scrolled
@@ -85,6 +85,6 @@ export const Navbar = () => {
           </div>
         </div>
       </nav>
-    </header>
+    </section>
   );
 };
