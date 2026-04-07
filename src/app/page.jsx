@@ -18,6 +18,7 @@ import { FeatureWrapper } from "@/components/sections/FeatureWrapper";
 import { Footer } from "@/components/sections/FooterSection";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { PainPoints } from "@/components/sections/PainPoints";
+import { TestimonialSection } from "@/components/sections/TestimonialSection";
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
       <HeroSection />
       <PainPoints></PainPoints>
       <FeatureWrapper></FeatureWrapper>
+      <TestimonialSection></TestimonialSection>
       <CTASection></CTASection>
       <Footer></Footer>
     </>
