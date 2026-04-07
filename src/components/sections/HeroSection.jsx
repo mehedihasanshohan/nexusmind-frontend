@@ -1,155 +1,114 @@
-// "use client";
-
-// import { useEffect, useRef } from "react";
-// import { gsap } from "gsap";
-// import { useCountdown } from "@/app/hooks/useCountdown";
-
-// export function HeroSection() {
-//   const countdown = useCountdown();
-//   const badgeRef = useRef(null);
-//   const h1Ref = useRef(null);
-//   const subRef = useRef(null);
-//   const ctasRef = useRef(null);
-
-//   useEffect(() => {
-//     const ctx = gsap.context(() => {
-//       gsap.timeline({ defaults: { ease: "power3.out" }, delay: 0.3 })
-//         .fromTo(badgeRef.current, { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 })
-//         .fromTo(h1Ref.current, { y: 32, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 }, "-=0.3")
-//         .fromTo(subRef.current, { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, "-=0.4")
-//         .fromTo(ctasRef.current, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55 }, "-=0.35");
-//     });
-//     return () => ctx.revert();
-//   }, []);
-
-//   return (
-//     <section className="hero-mesh relative min-h-screen flex items-center justify-center text-center pt-24 px-6 bg-deep">
-//       <div className="relative z-[2] max-w-[740px] flex flex-col items-center gap-6">
-//         <div ref={badgeRef} className="gsap-hidden inline-flex items-center gap-2 px-4 py-2 rounded-full border border-glow-clr bg-primary-dim text-primary-lit text-sm">
-//           <span className="animate-pulse-dot w-2 h-2 rounded-full bg-primary-lit shadow-badge-dot" />
-//           <span>🔥 30% off until</span>
-//           <span className="font-bold">{countdown}</span>
-//         </div>
-//         <h1 ref={h1Ref} className="gsap-hidden text-hero font-extrabold leading-tight text-base-clr">
-//           Master Focus & <span className="gradient-text">Get More Done</span>
-//         </h1>
-//         <p ref={subRef} className="gsap-hidden text-muted-clr max-w-[480px]">
-//           Eliminate procrastination and train your brain for deep work.
-//         </p>
-//         <div ref={ctasRef} className="gsap-hidden flex gap-4">
-//           <button className="bg-[#6366f1] text-white px-8 py-3 rounded-xl shadow-cta">Enroll Now</button>
-//           <button className="border border-theme px-8 py-3 rounded-xl">Curriculum</button>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
-
-
-
-
 
 "use client";
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-// import { BoltIcon, ArrowRightIcon, ArrowDownIcon } from "@/components/ui/Icons";
 import { VideoSection } from "./VideoSection";
 import { useCountdown } from "@/app/hooks/useCountdown";
 
 export function HeroSection() {
   const countdown = useCountdown();
 
+  // Refs for GSAP animations
   const badgeRef = useRef(null);
   const h1Ref    = useRef(null);
   const subRef   = useRef(null);
   const ctasRef  = useRef(null);
+  const videoWrapperRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.timeline({ defaults: { ease: "power3.out" }, delay: 0.35 })
-        .fromTo(badgeRef.current, { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 })
-        .fromTo(h1Ref.current,    { y: 32, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 }, "-=0.3")
-        .fromTo(subRef.current,   { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, "-=0.4")
-        .fromTo(ctasRef.current,  { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55 }, "-=0.35");
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" }, delay: 0.3 });
+
+      tl.fromTo(badgeRef.current, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 })
+        .fromTo(h1Ref.current, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.4")
+        .fromTo(subRef.current, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, "-=0.5")
+        .fromTo(ctasRef.current, { y: 15, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 }, "-=0.4")
+        .fromTo(videoWrapperRef.current, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1 }, "-=0.5");
     });
     return () => ctx.revert();
   }, []);
 
   return (
-    /*
-      Hero-Section from Figma:
-      - Flow: Vertical (items stacked)
-      - Width: Fill (981px)
-      - Color: Surface/BG/-1 = #000000
-      - Contains: BG-Gradient, Hero-Content, Video-Container
+    /* Section Setup:
+      - Background: Pure Black (#000000) based on Figma Surface/BG/-1
     */
-    <section className="hero-mesh relative min-h-screen flex flex-col items-center overflow-hidden bg-deep">
+    <section className="relative min-h-screen flex flex-col items-center overflow-hidden bg-deep">
 
-      {/* ── Hero text content ── */}
-      <div className="relative z-[2] w-full flex flex-col items-center text-center pt-[calc(64px+56px)] pb-10 px-6">
-        <div className="max-w-[700px] flex flex-col items-center gap-6">
+      {/* 🌌 Blue Radial Glow (Figma Layer: BG-Gradient) */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1400px] h-[900px] pointer-events-none">
+        <div
+          className="w-full h-full opacity-40 dark:opacity-60"
+          style={{
+            background: "radial-gradient(50% 50% at 50% 50%, rgba(99, 102, 241, 0.18) 0%, transparent 100%)",
+            filter: "blur(100px)"
+          }}
+        />
+      </div>
 
-          {/* Countdown badge */}
+      {/* ── Hero Content ── */}
+      <div className="relative z-[10] w-full flex flex-col items-center text-center pt-[calc(64px+90px)] pb-12 px-6">
+        <div className="w-full flex flex-col items-center gap-7">
+
+          {/* 🏷️ Countdown Badge (Figma: Auto-layout with 30% off) */}
           <div
             ref={badgeRef}
-            className="gsap-hidden inline-flex items-center gap-2 px-4 py-[7px] rounded-full border border-glow-clr bg-primary-dim backdrop-blur-sm text-[13px] font-medium text-primary-lit tracking-[0.2px]"
+            className="opacity-0 inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md"
           >
-            <span className="animate-pulse-dot w-[7px] h-[7px] rounded-full bg-[#818cf8] shadow-badge-dot flex-shrink-0" />
-            <span>🔥 30% off until</span>
-            <span className="font-display font-bold tracking-[1px]">{countdown}</span>
+            <span className="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-[0_0_8px_#3b82f6]" />
+
+            <span className="text-[13px] font-medium text-primary-lit tracking-tight">
+              30% off until <span className="font-bold ml-1">{countdown}</span>
+            </span>
           </div>
 
-          {/* Headline */}
+          {/* 👑 Headline (Figma: Master Focus & Get...) */}
           <h1
             ref={h1Ref}
-            className="gsap-hidden font-display text-hero font-extrabold leading-[1.1] tracking-[-0.03em] text-base-clr"
+            className="opacity-0 font-display text-[42px] md:text-[68px]  leading-[1.05] text-hero-title"
           >
-            Master Focus &amp; Get<br />
-            <span className="gradient-text">More Done in Less Time</span>
+            Master Focus & Get<br />
+            <span>More Done in Less Time</span>
           </h1>
 
-          {/* Subtitle */}
+          {/* 📝 Subtitle */}
           <p
             ref={subRef}
-            className="gsap-hidden text-base leading-[1.7] text-muted-clr max-w-[480px]"
+            className="opacity-0 text-[17px] md:text-[19px] leading-relaxed text-muted-clr max-w-[540px]"
           >
             A step-by-step system to eliminate procrastination, train your
             brain for deep work, and boost productivity effortlessly.
           </p>
 
-          {/* CTAs */}
-          <div ref={ctasRef} className="gsap-hidden flex items-center gap-3 flex-wrap justify-center">
+          {/* 🚀 CTAs */}
+          <div ref={ctasRef} className="opacity-0 flex items-center gap-4 mt-2">
             <a
-              href="#pricing"
-              className="px-7 py-[13px] rounded-xl bg-[#6366f1] text-white no-underline text-[15px] font-semibold inline-flex items-center gap-2 shadow-cta hover:bg-[#818cf8] hover:-translate-y-0.5 hover:shadow-cta-hover transition-all duration-200"
+              href="#enroll"
+              className="px-8 py-3.5 rounded-2xl bg-[#2466f2] text-white text-[15px] font-bold shadow-cta hover:bg-[#3b82f6] hover:-translate-y-1 transition-all duration-300"
             >
-              {/* <BoltIcon /> */}
               Enroll now
             </a>
             <a
               href="#curriculum"
-              className="px-7 py-[13px] rounded-xl bg-transparent text-base-clr no-underline text-[15px] font-medium inline-flex items-center gap-2 border border-theme hover:border-glow-clr hover:bg-primary-dim hover:-translate-y-0.5 transition-all duration-200"
+              style={{ backgroundColor: 'var(--btn-bg-curriculum)' }}
+              className="px-8 py-3.5 rounded-2xl text-white border border-white/10 text-[15px] font-semibold hover:bg-white/10 transition-all"
             >
               Curriculum
-              {/* <ArrowRightIcon /> */}
             </a>
           </div>
         </div>
       </div>
 
-      {/*
-        ── Video-Container (Figma child of Hero-Section)
-        Sits directly below Hero-Content, full-width within hero
-      */}
-      <div className="relative z-[2] w-full">
+      {/* 📹 Video Section Wrapper */}
+      <div
+        ref={videoWrapperRef}
+        className="opacity-0 relative z-20 w-full max-w-275 px-6 pb-24 mt-4"
+      >
         <VideoSection />
       </div>
 
-      {/* Scroll cue */}
-      <div className="animate-float-cue absolute bottom-6 left-1/2 z-[3] flex flex-col items-center text-faint-clr opacity-50">
-        {/* <ArrowDownIcon /> */}
-      </div>
+      {/* Bottom Fade to Black (Ensures smooth transition to next section) */}
+      {/* <div className="absolute bottom-0 left-0 right-0 h-40 bg-linear-to-t from-[#000000] to-transparent z-[5] pointer-events-none" /> */}
     </section>
   );
 }

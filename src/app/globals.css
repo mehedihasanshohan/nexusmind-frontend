@@ -6,10 +6,11 @@
 
 :root,
 [data-theme="dark"] {
-  --bg-deep:       #0b0d14;
+  --bg-deep: #000000;
+  --bg-card: #0a0a0a;
   --bg-card:       #111520;
   --primary:       #6366f1;
-  --primary-lit:   #818cf8;
+  --primary-lit:   #0d20c4;
   --primary-dim:   rgba(99,102,241,0.15);
   --accent:        #22d3ee;
   --border:        rgba(255,255,255,0.08);
@@ -20,6 +21,9 @@
   --glow:          0 0 60px rgba(99,102,241,0.22);
   --nav-scrolled:  rgba(11,13,20,0.75);
   --nav-menu: #D0D5D9;
+  --btn-bg: #2466f2;
+  --btn-bg-curriculum: #171B21;
+  --hero-title: #E0E3E5;
 }
 
 [data-theme="light"] {
@@ -33,6 +37,9 @@
   --text-faint:    #94a3b8;
   --glow:          0 0 60px rgba(99,102,241,0.15);
   --nav-scrolled:  rgba(240,244,255,0.8);
+  --btn-bg: #4f46e5;
+  --hero-title: #111827;
+  --btn-bg-curriculum: #c4c4ce;
 }
 
 
@@ -115,6 +122,10 @@ body::before {
   .font-display { font-family: 'Sora', sans-serif; }
   .font-body    { font-family: 'DM Sans', sans-serif; }
 
+  .shadow-badge {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1), 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+
   /* Fluid / clamp sizes */
   .text-hero    { font-size: clamp(38px, 6vw, 68px); }
   .text-section { font-size: clamp(24px, 3.5vw, 38px); }
@@ -154,8 +165,8 @@ body::before {
   .shadow-cta         { box-shadow: 0 4px 30px rgba(99,102,241,0.35); }
   .shadow-cta-hover   { box-shadow: 0 8px 40px rgba(99,102,241,0.5); }
   .shadow-badge-dot   { box-shadow: 0 0 8px var(--primary-lit); }
-  .shadow-video       { box-shadow: 0 24px 80px rgba(0,0,0,0.5), var(--glow); }
-  .shadow-video-hover { box-shadow: 0 32px 100px rgba(0,0,0,0.6), var(--glow); }
+  /* .shadow-video       { box-shadow: 0 24px 80px rgba(0,0,0,0.5), var(--glow); } */
+  /* .shadow-video-hover { box-shadow: 0 32px 100px rgba(0,0,0,0.6), var(--glow); } */
   .shadow-play        { box-shadow: 0 0 0 12px rgba(99,102,241,0.15), 0 0 40px rgba(99,102,241,0.4); }
   .shadow-play-hover  { box-shadow: 0 0 0 20px rgba(99,102,241,0.1), 0 0 60px rgba(99,102,241,0.5); }
   .shadow-screen      { box-shadow: 0 0 40px rgba(99,102,241,0.15), inset 0 1px 0 rgba(255,255,255,0.05); }
@@ -184,4 +195,12 @@ body::before {
     --card: 240 10% 5.9%;
     --border: 240 3.7% 15.9%;
   }
+}
+
+.hero-glow-bg {
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(99, 102, 241, 0.12) 0%, /* Soft Blue Glow */
+    rgba(0, 0, 0, 0) 100%
+  ), #000000;
 }

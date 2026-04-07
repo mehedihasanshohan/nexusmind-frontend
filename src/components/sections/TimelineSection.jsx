@@ -1,12 +1,15 @@
-// BenefitsSection.jsx
-// Next.js + Tailwind CSS v4 — no TypeScript, no raw CSS
+"use client";
+
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 const benefits = [
   {
     id: 1,
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
-        strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-white">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
+        strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
         <circle cx="12" cy="12" r="3" />
         <path d="M12 2v3M12 19v3M2 12h3M19 12h3" />
         <circle cx="12" cy="12" r="8" strokeWidth="1" />
@@ -17,8 +20,8 @@ const benefits = [
   {
     id: 2,
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
-        strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-white">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
+        strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
         <path d="M12 2L2 7l10 5 10-5-10-5z" />
         <path d="M2 12l10 5 10-5" />
         <path d="M2 17l10 5 10-5" />
@@ -29,8 +32,8 @@ const benefits = [
   {
     id: 3,
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
-        strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-white">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
+        strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
         <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.25C17.25 22.15 21 17.25 21 12V7z" />
         <polyline points="9 12 11 14 15 10" />
       </svg>
@@ -40,8 +43,8 @@ const benefits = [
   {
     id: 4,
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
-        strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-white">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
+        strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
         <path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
       </svg>
     ),
@@ -49,43 +52,73 @@ const benefits = [
   },
 ];
 
-// Tailwind v4 doesn't support arbitrary pseudo-element styles,
-// so the dashed line + blue dot are rendered via inline styles.
-
 export default function TimelineSection() {
-  return (
-    <section className="bg-[#0d0d1a] w-full flex flex-col items-center px-5 py-20">
+  const sectionRef = useRef(null);
+  const triggerRef = useRef(null);
+  const itemGap = "72px";
 
-      {/* Badge */}
-      <div className="flex items-center gap-2 bg-white/[0.06] border border-white/10 rounded-full px-4 py-1.5 mb-6">
-        <span className="w-2 h-2 rounded-full bg-[#6c8fff] flex-shrink-0" />
-        <span className="text-xs text-white/70 font-medium tracking-wide">
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      gsap.registerPlugin(ScrollTrigger);
+    }
+
+    const ctx = gsap.context(() => {
+      // Timeline items animation
+      gsap.fromTo(
+        ".timeline-item",
+        { opacity: 0, x: -30 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1,
+          stagger: 0.25,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: triggerRef.current,
+            start: "top 85%",
+          },
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="bg-deep w-full flex flex-col items-center px-6 py-28 transition-colors duration-300">
+
+      {/* Badge Section with Pulsing Glow Dot */}
+      <div className="flex items-center gap-3 bg-primary-dim border border-glow-clr rounded-full px-5 py-2 mb-8 shadow-sm">
+        <span className="relative flex h-2.5 w-2.5">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-clr opacity-75"></span>
+
+        </span>
+            <span className="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-[0_0_8px_#3b82f6]" />
+
+        <span className="text-[11px] md:text-xs text-accent-clr font-bold tracking-[0.1em] uppercase">
           The Deep Work Blueprint
         </span>
       </div>
 
-      {/* Heading */}
+      {/* Main Heading */}
       <h2
-        className="text-white font-extrabold text-center max-w-[500px] leading-[1.2] tracking-tight mb-14"
+        className="text-base-clr font-display text-center max-w-[600px] leading-[1.2] tracking-tight mb-20"
         style={{ fontSize: "clamp(28px, 6vw, 44px)" }}
       >
         A self-paced, results-driven course designed to help you
       </h2>
 
-      {/* Timeline wrapper — position relative for the ::before line */}
-      <div className="w-full max-w-[400px] relative flex flex-col">
+      {/* Timeline Wrapper */}
+      <div ref={triggerRef} className="w-full max-w-[480px] relative flex flex-col">
 
-        {/* Continuous dashed vertical line on the far left */}
+        {/* Continuous Dashed Vertical Line */}
         <div
           aria-hidden="true"
+          className="absolute left-0 w-[1px] opacity-25"
           style={{
-            position: "absolute",
-            left: 0,
-            top: 22,        // aligns with center of first icon (44px / 2)
-            bottom: 22,     // aligns with center of last icon
-            width: 1,
-            backgroundImage:
-              "repeating-linear-gradient(to bottom, rgba(255,255,255,0.35) 0px, rgba(255,255,255,0.35) 5px, transparent 5px, transparent 11px)",
+            top: "24px",
+            bottom: "24px",
+            backgroundImage: `repeating-linear-gradient(to bottom, var(--text-base) 0px, var(--text-base) 6px, transparent 6px, transparent 12px)`,
             zIndex: 0,
           }}
         />
@@ -95,44 +128,38 @@ export default function TimelineSection() {
           return (
             <div
               key={item.id}
-              className="flex items-start gap-5 relative"
-              style={{ marginTop: isFirst ? 0 : 32 }}
+              className="timeline-item flex items-start gap-6 relative group"
+              style={{ marginTop: isFirst ? 0 : itemGap }}
             >
-              {/* Blue dot on the line — sits between this item and the previous */}
+              {/* Connecting Neon Dot with strong Glow */}
               {!isFirst && (
                 <div
                   aria-hidden="true"
+                  className="absolute left-[-5px] w-[11px] h-[11px] rounded-full z-10 transition-transform group-hover:scale-125"
                   style={{
-                    position: "absolute",
-                    left: -4,        // centers the 9px dot on the 1px line
-                    top: -20,        // halfway up the 32px gap (margin-top / 2 - dot/2)
-                    width: 9,
-                    height: 9,
-                    borderRadius: "50%",
-                    background: "#6c8fff",
-                    boxShadow: "0 0 0 3px rgba(108,143,255,0.18)",
-                    zIndex: 2,
+                    top: `calc(-${itemGap} / 2 - 5px)`,
+                    backgroundColor: "#22d3ee",
+                    boxShadow: "0 0 12px #22d3ee, 0 0 25px rgba(34, 211, 238, 0.7)",
                   }}
                 />
               )}
 
-              {/* Icon box — offset 20px from the line */}
+              {/* Icon Container */}
               <div
-                className="flex items-center justify-center rounded-xl border border-white/[0.12] flex-shrink-0"
+                className="flex items-center justify-center rounded-2xl border border-theme flex-shrink-0 bg-card text-accent-clr shadow-sm transition-all duration-300 group-hover:border-accent-clr group-hover:shadow-badge"
                 style={{
-                  width: 44,
-                  height: 44,
-                  background: "rgba(255,255,255,0.07)",
-                  marginLeft: 20,
+                  width: 50,
+                  height: 50,
+                  marginLeft: "24px",
                   zIndex: 1,
                 }}
               >
                 {item.icon}
               </div>
 
-              {/* Text */}
-              <div className="flex-1 pt-2.5">
-                <p className="text-white font-semibold text-[15px] leading-snug">
+              {/* Text Area */}
+              <div className="flex-1 pt-3.5">
+                <p className="text-base-clr font-semibold text-[17px] md:text-[20px] leading-snug tracking-tight transition-colors group-hover:text-accent-clr">
                   {item.text}
                 </p>
               </div>
@@ -140,7 +167,6 @@ export default function TimelineSection() {
           );
         })}
       </div>
-
     </section>
   );
 }
