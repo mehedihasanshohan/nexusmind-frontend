@@ -23,7 +23,7 @@ export function CurriculumSection() {
   ];
 
   return (
-    <section className="relative py-24 px-6 overflow-hidden bg-deep transition-colors duration-300">
+    <section id="curriculum" className="relative py-24 px-6 overflow-hidden bg-deep transition-colors duration-300">
       <div className="relative z-10 max-w-6xl mx-auto">
 
         {/* Header */}
@@ -40,7 +40,7 @@ export function CurriculumSection() {
             </span>
           </motion.div>
 
-          <h2 className="text-3xl md:text-5xl font-display font-bold leading-tight text-base-clr">
+          <h2 className="text-3xl md:text-5xl font-display leading-tight text-base-clr">
             Mastering Deep Work: A Structured <br className="hidden md:block" />{" "}
             Path to Peak Productivity
           </h2>

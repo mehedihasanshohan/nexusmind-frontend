@@ -65,7 +65,7 @@ export function Testimonials() {
   }
 
   return (
-    <section className="py-24 overflow-hidden bg-deep transition-colors duration-500">
+    <section id="testimonials" className="py-24 overflow-hidden bg-deep transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Header Section */}
@@ -134,7 +134,7 @@ export function Testimonials() {
                       />
                     </div>
                     <p className="text-muted-clr leading-relaxed text-[17px] font-medium italic font-body">
-                      "{item.content}"
+                      {item.content}
                     </p>
                   </div>
                   <div>

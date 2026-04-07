@@ -42,6 +42,7 @@ export function CTASection() {
   return (
     <section
       ref={sectionRef}
+      id="pricing"
       className="relative py-[80px] md:py-[120px] px-6 overflow-hidden bg-deep transition-colors duration-500"
     >
       {/* Background Glow */}
