@@ -16,7 +16,7 @@
 import { CTASection } from "@/components/sections/CTAsection";
 import { CurriculumSection } from "@/components/sections/CurriculumSection";
 import { FeatureWrapper } from "@/components/sections/FeatureWrapper";
-import { Footer } from "@/components/sections/FooterSection";
+import FooterSection from "@/components/sections/FooterSection";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { PainPoints } from "@/components/sections/PainPoints";
 import { Testimonials } from "@/components/sections/TestimonialSection";
@@ -32,7 +32,7 @@ export default function Home() {
       <CurriculumSection></CurriculumSection>
       <Testimonials></Testimonials>
       <CTASection></CTASection>
-      <Footer></Footer>
+      <FooterSection></FooterSection>
     </>
   );
 }

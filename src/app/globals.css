@@ -19,6 +19,7 @@
   --text-faint:    #475569;
   --glow:          0 0 60px rgba(99,102,241,0.22);
   --nav-scrolled:  rgba(11,13,20,0.75);
+  --nav-menu: #D0D5D9;
 }
 
 [data-theme="light"] {
@@ -164,5 +165,23 @@ body::before {
     background-color: var(--nav-scrolled);
     backdrop-filter: blur(18px) saturate(160%);
     -webkit-backdrop-filter: blur(18px) saturate(160%);
+  }
+}
+
+@layer base {
+  :root {
+    /* Light Mode - Soft & Pro Look */
+    --background: 210 40% 98%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --border: 214.3 31.8% 91.4%;
+    --primary: 221.2 83.2% 53.3%;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --card: 240 10% 5.9%;
+    --border: 240 3.7% 15.9%;
   }
 }

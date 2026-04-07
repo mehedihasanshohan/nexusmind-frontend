@@ -6,6 +6,7 @@ import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useScrolled } from "@/app/hooks/useScrollled";
 import { useCountdown } from "@/app/hooks/useCountdown";
+import { PPALogo } from "../sections/PPALogo";
 
 export const Navbar = () => {
   const { theme, setTheme } = useTheme();
@@ -15,25 +16,20 @@ export const Navbar = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex flex-col items-center w-full">
 
-    
+
       {/* Main Nav */}
       <nav className={`w-full transition-all duration-300 ${
         scrolled ? "bg-nav-scrolled py-3 border-b border-theme" : "bg-transparent py-6"
       }`}>
-        <div className="max-w-[1280px] mx-auto px-6 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-logo">
-              <span className="text-black font-bold text-xs italic">P</span>
-            </div>
-            <span className="text-base-clr font-display font-black text-xl tracking-tighter italic uppercase">
-              PPA
-            </span>
+            <PPALogo></PPALogo>
           </Link>
 
           {/* Links */}
-          <div className="hidden md:flex items-center gap-8 text-muted-clr font-medium text-sm">
+          <div className="hidden md:flex items-center gap-8 nav-menu font-medium text-sm">
             <Link href="#overview" className="hover:text-primary-lit transition-colors">Overview</Link>
             <Link href="#curriculum" className="hover:text-primary-lit transition-colors">Curriculum</Link>
             <Link href="#testimonials" className="hover:text-primary-lit transition-colors">Testimonials</Link>
