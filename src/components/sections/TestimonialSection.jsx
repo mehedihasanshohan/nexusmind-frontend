@@ -270,7 +270,7 @@ export function Testimonials() {
                   <div>
                     <img src={item.avatar} className="w-11 h-11 rounded-full mb-8 object-cover grayscale group-hover:grayscale-0 transition-all" alt="" />
                     <p className="text-gray-700 dark:text-slate-300 leading-relaxed text-[16px] font-medium italic">
-                      "{item.content}"
+                      {item.content}
                     </p>
                   </div>
                   <div>

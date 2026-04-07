@@ -14,6 +14,7 @@
 
 
 import { CTASection } from "@/components/sections/CTAsection";
+import { CurriculumSection } from "@/components/sections/CurriculumSection";
 import { FeatureWrapper } from "@/components/sections/FeatureWrapper";
 import { Footer } from "@/components/sections/FooterSection";
 import { HeroSection } from "@/components/sections/HeroSection";
@@ -28,6 +29,7 @@ export default function Home() {
       <PainPoints></PainPoints>
       <FeatureWrapper></FeatureWrapper>
       <TimelineSection></TimelineSection>
+      <CurriculumSection></CurriculumSection>
       <Testimonials></Testimonials>
       <CTASection></CTASection>
       <Footer></Footer>
